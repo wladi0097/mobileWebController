@@ -1,0 +1,12 @@
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+$primary-font: Helvetica, sans-serif;
+$primary-color: #333;

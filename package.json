@@ -1,0 +1,50 @@
+{
+  "name": "mobile-web-controller",
+  "version": "0.0.1",
+  "description": "",
+  "main": "",
+  "scripts": {
+    "start": "webpack-dev-server --env dev --mode none",
+    "build": "webpack --env prod --mode production",
+    "build-no-prod": "webpack --env prod --mode none",
+    "examples": "webpack --examples --env prod --mode production",
+    "test": "jest",
+    "testw": "jest --watch",
+    "testc": "jest --coverage",
+    "lints": "sass-lint -c ./sass-lint.yml ./src/**/*.scss -v -q",
+    "lintj": "tslint -c tslint.json src/**/*.ts"
+  },
+  "author": "Wlad",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/jest": "^24.0.23",
+    "autoprefixer": "^9.7.2",
+    "awesome-typescript-loader": "^5.2.1",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.0.6",
+    "babel-preset-env": "^1.7.0",
+    "clean-webpack-plugin": "^3.0.0",
+    "css-loader": "^3.2.0",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.2.0",
+    "jest": "^24.9.0",
+    "mini-css-extract-plugin": "^0.8.0",
+    "node-sass": "^4.13.0",
+    "postcss-loader": "^3.0.0",
+    "sass-lint": "^1.13.1",
+    "sass-loader": "^8.0.0",
+    "style-loader": "^1.0.0",
+    "ts-loader": "^6.2.2",
+    "tslint": "^5.20.1",
+    "typescript": "^3.7.2",
+    "webpack": "^4.41.2",
+    "webpack-bundle-analyzer": "^3.8.0",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.9.0",
+    "webpack-md5-hash": "0.0.6",
+    "webpack-merge": "^4.2.2"
+  },
+  "dependencies": {
+    "preact": "^10.4.6"
+  }
+}

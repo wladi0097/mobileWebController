@@ -1,0 +1,28 @@
+name: Check All
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x]
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Install
+      run: npm ci
+      env:
+        CI: true
+    - name: Lint css
+      run: npm run lints
+    - name: Lint ts
+      run: npm run lintj
+    - name: Test
+      run: npm run test
+    - name: Build
+      run: npm run build
+      

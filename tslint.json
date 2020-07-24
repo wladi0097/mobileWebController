@@ -1,0 +1,38 @@
+{
+  "defaultSeverity": "error",
+  "extends": [
+    "tslint:recommended"
+  ],
+  "jsRules": true,
+  "rules": {
+    "no-any": true,
+    "no-empty-interface": true,
+    "typedef": true,
+    "no-console": true,
+    "no-eval": true,
+    "no-empty": true,
+    "no-string-literal": true,
+    "quotemark": [
+      true,
+      "single"
+    ],
+    "member-ordering": [
+      true,
+      {
+        "order": [
+          "static-field",
+          "instance-field",
+          "constructor",
+          "public-static-method",
+          "protected-static-method",
+          "private-static-method",
+          "public-instance-method",
+          "protected-instance-method",
+          "private-instance-method"
+        ]
+      }
+    ],
+    "trailing-comma": false
+  },
+  "rulesDirectory": []
+}
