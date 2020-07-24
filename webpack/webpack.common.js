@@ -10,11 +10,11 @@ module.exports = {
     },
     resolve: {
         extensions: ['.ts', '.js', '.tsx'],
-        // alias: {
-        //     'react': 'preact/compat',
-        //     'react-dom/test-utils': 'preact/test-utils',
-        //     'react-dom': 'preact/compat',
-        // }
+        alias: {
+            'react': 'preact/compat',
+            'react-dom/test-utils': 'preact/test-utils',
+            'react-dom': 'preact/compat',
+        }
     },
     output: {
         path: path.resolve(__dirname, prod_Path),
@@ -26,19 +26,13 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.ts?$/,
-                use: 'ts-loader',
-                exclude: /node_modules/
-            },
-            {
-                test: /\.tsx?$/,
+                test: /\.(ts|tsx)$/,
                 exclude: /node_modules/,
-                use: [{
-                    loader: 'ts-loader',
-                    options: {
-                        transpileOnly: true,
-                    },
-                }],
+                use: [
+                    {
+                        loader: 'ts-loader',
+                    }
+                ],
             },
         ]
     },

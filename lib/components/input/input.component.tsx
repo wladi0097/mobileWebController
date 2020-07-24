@@ -1,6 +1,4 @@
-import {ComponentChild, RenderableProps} from 'preact';
-import Element = JSXInternal.Element;
-import {JSXInternal} from 'preact/src/jsx';
+import {ComponentChild, RenderableProps, VNode} from 'preact';
 import {CommonInputComponent} from '../common/common.input.component';
 
 interface IProps {
@@ -9,16 +7,14 @@ interface IProps {
 }
 
 class InputComponent$ extends CommonInputComponent<IProps> {
-    public render(
-        props?: RenderableProps<IProps>
-    ): ComponentChild {
+    public render(props?: RenderableProps<IProps>): ComponentChild {
         return <div>
-            <h1>{this.props.text}</h1>
+            <h1>{props.text}</h1>
             <input/>
-            <button>{this.props.buttonText}</button>
+            <button>{props.buttonText}</button>
         </div>;
     }
 }
 
-export const InputComponent = (text: string, buttonText: string): Element => <InputComponent$ text={text}
-                                                                                              buttonText={buttonText}/>;
+export const InputComponent = (text: string, buttonText: string): VNode => <InputComponent$ text={text}
+                                                                                            buttonText={buttonText}/>;

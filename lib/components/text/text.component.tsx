@@ -1,17 +1,16 @@
-import {JSXInternal} from 'preact/src/jsx';
+import {ComponentChild, RenderableProps, VNode} from 'preact';
 import {CommonDisplayComponent} from '../common/common.display.component';
-import Element = JSXInternal.Element;
 
 interface IProps {
     text?: string;
 }
 
 class TextComponent$ extends CommonDisplayComponent<IProps> {
-    public render(): Element {
+    public render(props?: RenderableProps<IProps>): ComponentChild {
         return <div>
-            <p>{this.props.text}</p>
+            <p>{props.text}</p>
         </div>;
     }
 }
 
-export const TextComponent = (text: string): Element => <TextComponent$ text={text}/>;
+export const TextComponent = (text: string): VNode => <TextComponent$ text={text}/>;
