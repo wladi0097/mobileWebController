@@ -12,7 +12,10 @@ module.exports = merge(common, {
     },
     output: {
         path: path.resolve(__dirname, prod_Path),
-        filename: '[name].mobileWebController.js',
+        filename: (pathData) => pathData.chunk.name === 'main' ? 'mobileWebController.js': 'example.js',
+        libraryTarget: 'umd',
+        library: 'mobileWebController',
+        umdNamedDefine: true
     },
     devtool: 'source-map',
     devServer: {

@@ -5,6 +5,6 @@ module.exports = function (api) {
         plugins: [["@babel/plugin-transform-react-jsx", {
             "pragma": "h",
             "pragmaFrag": "Fragment",
-        }]]
+        }], 'transform-class-properties']
     }
 }

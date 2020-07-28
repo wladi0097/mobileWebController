@@ -2,6 +2,7 @@ import {render} from 'preact';
 import * as React from 'preact/compat';
 import {InputComponent} from './components/input/input.component';
 import {TextComponent} from './components/text/text.component';
+import './styles/main.scss';
 
 class Builder {
     private readonly element: HTMLElement;
@@ -14,7 +15,7 @@ class Builder {
         render(TextComponent(text), this.element);
     }
 
-    public input(text: string, buttonText: string) {
+    public input(text: string, buttonText: string): void {
         render(InputComponent(text, buttonText), this.element);
     }
 }

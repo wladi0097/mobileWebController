@@ -1,7 +1,19 @@
 .single{
-  color: red;
-  >h1 {
-    color: red;
+  font-family: Helvetica, sans-serif;
+  padding: 10px 1vw;
+  text-align: center;
+
+  >div {
+    &::after {
+      display: block;
+      content: "";
+      clear: both;
+    }
+
+    .content {
+      width: 50%;
+      float: left;
+    }
   }
 }
 

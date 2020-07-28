@@ -1,3 +1,5 @@
+@import "vars";
+
 *,
 *:before,
 *:after {
@@ -8,5 +10,11 @@ html {
   box-sizing: border-box;
 }
 
-$primary-font: Helvetica, sans-serif;
-$primary-color: #333;
+body {
+  background: $background;
+  color: $textColor;
+  font-family: $primary-font;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
