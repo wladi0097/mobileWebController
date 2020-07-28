@@ -1,21 +1,21 @@
 import {render} from 'preact';
 import * as React from 'preact/compat';
-import {CommonDisplayComponent} from './components/common/common.display.component';
-import {CommonInputComponent} from './components/common/common.input.component';
+import {InputComponent} from './components/input/input.component';
+import {TextComponent} from './components/text/text.component';
 
 class Builder {
-    private element: HTMLElement;
+    private readonly element: HTMLElement;
 
     constructor(element: HTMLElement) {
         this.element = element;
     }
 
-    public get(component: CommonInputComponent): void {
-        render(component, this.element);
+    public text(text: string): void {
+        render(TextComponent(text), this.element);
     }
 
-    public display(component: CommonDisplayComponent): void {
-        render(component, this.element);
+    public input(text: string, buttonText: string) {
+        render(InputComponent(text, buttonText), this.element);
     }
 }
 

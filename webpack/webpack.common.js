@@ -1,3 +1,4 @@
+const webpack = require('webpack')
 const path = require('path');
 const {
     prod_Path,
@@ -9,12 +10,7 @@ module.exports = {
         main: './' + src_Path + '/index.tsx'
     },
     resolve: {
-        extensions: ['.ts', '.js', '.tsx'],
-        alias: {
-            'react': 'preact/compat',
-            'react-dom/test-utils': 'preact/test-utils',
-            'react-dom': 'preact/compat',
-        }
+        extensions: ['.ts', '.js', '.tsx']
     },
     output: {
         path: path.resolve(__dirname, prod_Path),
@@ -30,11 +26,15 @@ module.exports = {
                 exclude: /node_modules/,
                 use: [
                     {
-                        loader: 'ts-loader',
+                        loader: 'babel-loader',
                     }
                 ],
             },
         ]
     },
-    plugins: []
+    plugins: [
+        new webpack.ProvidePlugin({
+            h: ['preact', 'h'],
+        })
+    ]
 };

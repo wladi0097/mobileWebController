@@ -16,5 +16,5 @@ class InputComponent$ extends CommonInputComponent<IProps> {
     }
 }
 
-export const InputComponent = (text: string, buttonText: string): VNode => <InputComponent$ text={text}
-                                                                                            buttonText={buttonText}/>;
+export const InputComponent = (text: string, buttonText: string): VNode => <InputComponent$
+    text={text} buttonText={buttonText}/>;
