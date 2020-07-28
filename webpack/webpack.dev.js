@@ -2,8 +2,18 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const merge = require('webpack-merge');
 const common = require('./webpack.common.js');
+const {prod_Path, src_Path} = require('./path');
+const path = require('path');
 
 module.exports = merge(common, {
+    entry: {
+        main: './' + src_Path + '/index.tsx',
+        examples: './examples/examples/examples.tsx'
+    },
+    output: {
+        path: path.resolve(__dirname, prod_Path),
+        filename: '[name].mobileWebController.js',
+    },
     devtool: 'source-map',
     devServer: {
         open: false,
@@ -13,38 +23,31 @@ module.exports = merge(common, {
             test: /\.(scss|css)$/,
             use: [
                 {
-                    loader: 'css-loader',
-                    options: {
-                        modules: {
-                            mode: 'local',
-                        },
-                        sourceMap: true
-                    }
+                    loader: MiniCssExtractPlugin.loader,
                 },
                 {
-                    loader: 'postcss-loader',
+                    loader: 'css-loader',
                     options: {
-                        sourceMap: true
+                        modules: true,
                     }
                 },
                 {
                     loader: 'sass-loader',
-                    options: {
-                        sourceMap: true
-                    }
                 }
             ]
         }]
     },
     plugins: [
         new MiniCssExtractPlugin({
-            filename: 'style.css'
+            filename: '[name].css',
+            chunkFilename: '[id].css',
         }),
         new HtmlWebpackPlugin({
             inject: false,
             hash: false,
             template: './examples/index.html',
-            filename: 'index.html'
+            filename: 'index.html',
+            chunks: ['main', 'examples']
         })
     ]
 });
