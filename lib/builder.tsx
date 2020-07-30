@@ -1,24 +1,23 @@
-import {render} from 'preact';
 import * as React from 'preact/compat';
-import {InputComponent} from './components/input/input.component';
-import {TextComponent} from './components/text/text.component';
+import {DisplayComponents} from './components/display/displayComponents';
+import {GetComponents} from './components/get/getComponents';
 import styles from './styles/main.scss';
 
 class Builder {
-    private readonly element: HTMLElement;
+    private readonly displayComponents: DisplayComponents;
+    private readonly getComponents: GetComponents;
 
     constructor(element: HTMLElement) {
-        this.element = element;
+        this.displayComponents = new DisplayComponents(element);
+        this.getComponents = new GetComponents(element);
     }
 
-    public text(text: string): void {
-        render(TextComponent(text), this.element);
+    public get display(): DisplayComponents {
+        return this.displayComponents;
     }
 
-    public input(text: string, buttonText: string): Promise<string> {
-        return new Promise((resolve) => {
-            render(InputComponent(resolve, text, buttonText), this.element);
-        });
+    public get get(): GetComponents {
+        return this.getComponents;
     }
 }
 

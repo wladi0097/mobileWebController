@@ -6,8 +6,8 @@ export class TextExample extends Component {
         return `
         (async function(){
         const wmc = mobileWebController.init(document.getElementById('main'))
-        const aa = await wmc.input('haha', 'brrrr');
-        wmc.text(aa)
+        const aa = await wmc.get.input('haha', 'brrrr');
+        wmc.display.text(aa)
         })()
         `;
     }

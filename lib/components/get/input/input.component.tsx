@@ -1,6 +1,5 @@
-import {ComponentChild, RenderableProps, VNode} from 'preact';
-import {TextHelper} from '../../helpers/text.helper';
-import {CommonInputComponent} from '../common/common.input.component';
+import {Component, ComponentChild, RenderableProps, VNode} from 'preact';
+import {TextHelper} from '../../../helpers/text.helper';
 import styles from './input.component.scss';
 
 interface IProps {
@@ -13,7 +12,7 @@ interface IState {
     inputText: string;
 }
 
-class InputComponent$ extends CommonInputComponent<IProps> {
+class InputComponent$ extends Component<IProps> {
     public state: Readonly<IState> = {inputText: ''};
 
     public done(): void {
