@@ -1,6 +1,5 @@
 import {Component, ComponentChild, RenderableProps, VNode} from 'preact';
 import {TextHelper} from '../../../helpers/text.helper';
-import styles from './input.component.scss';
 
 interface IProps {
     text?: string;
@@ -24,7 +23,7 @@ class InputComponent$ extends Component<IProps> {
     }
 
     public render(props?: RenderableProps<IProps>): ComponentChild {
-        return <div class={styles.inputComponent}>
+        return <div>
             <h1 style={TextHelper.fontSize(props.text, 0.7)}>{props.text}</h1>
             <input onInput={this.onInput.bind(this)}/>
             <button onClick={() => this.done()}>{props.buttonText}</button>
