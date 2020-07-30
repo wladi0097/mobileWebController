@@ -1,20 +1,26 @@
 @import 'vars';
 
-*,
-*::before,
-*::after {
-  box-sizing: inherit;
-}
-
-html {
-  box-sizing: border-box;
-}
-
-body {
+.mobileWebControllerMain {
   background: $background;
   color: $text-color;
   font-family: $primary-font;
   height: 100%;
   width: 100%;
   margin: 0;
+  display: inline-block;
+  padding: 6% 10%;
+  box-sizing: border-box;
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: inherit;
+  }
+
+  p,
+  h1 {
+    line-break: anywhere;
+    word-break: break-word;
+    text-align: center;
+  }
 }

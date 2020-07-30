@@ -2,7 +2,7 @@ import {render} from 'preact';
 import * as React from 'preact/compat';
 import {InputComponent} from './components/input/input.component';
 import {TextComponent} from './components/text/text.component';
-import './styles/main.scss';
+import styles from './styles/main.scss';
 
 class Builder {
     private readonly element: HTMLElement;
@@ -23,6 +23,6 @@ class Builder {
 }
 
 export function init(element: HTMLElement) {
-    element.setAttribute('style', 'height: 100%');
+    element.classList.add(styles.mobileWebControllerMain);
     return new Builder(element);
 }
