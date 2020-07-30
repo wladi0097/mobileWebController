@@ -1,8 +1,8 @@
-@import "vars";
+@import 'vars';
 
 *,
-*:before,
-*:after {
+*::before,
+*::after {
   box-sizing: inherit;
 }
 
@@ -12,7 +12,7 @@ html {
 
 body {
   background: $background;
-  color: $textColor;
+  color: $text-color;
   font-family: $primary-font;
   height: 100%;
   width: 100%;

@@ -1,4 +1,7 @@
 $primary-font: Helvetica, sans-serif;
 $primary-color: #333;
-$background: linear-gradient(to right, #4b6cb7, #182848);
-$textColor: #fff;
+$text-color: #fff;
+
+$background-gradient-left: #4b6cb7;
+$background-gradient-right: #4b6cb7;
+$background: linear-gradient(to right, $background-gradient-left, $background-gradient-right);

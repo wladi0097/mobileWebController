@@ -1,9 +1,10 @@
 files:
-  include: src/styles/**/*.scss
+  include: lib/**/*.scss
 options:
   formatter: stylish
   merge-default-rules: true
 rules:
+  class-name-format: camelcase
   extends-before-declarations: 2
   extends-before-mixins: 2
   hex-notation: 0

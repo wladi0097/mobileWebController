@@ -12,8 +12,8 @@
     "test": "jest",
     "testw": "jest --watch",
     "testc": "jest --coverage",
-    "lints": "sass-lint -c ./sass-lint.yml ./src/**/*.scss -v -q",
-    "lintj": "tslint -c tslint.json src/**/*.ts"
+    "lints": "sass-lint -c ./sass-lint.yml ./lib/**/*.scss -v -q",
+    "lintj": "tslint -c tslint.json ./lib/**/*.tsx"
   },
   "author": "Wlad",
   "license": "MIT",

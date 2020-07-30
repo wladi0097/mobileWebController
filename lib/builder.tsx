@@ -23,5 +23,6 @@ class Builder {
 }
 
 export function init(element: HTMLElement) {
+    element.setAttribute('style', 'height: 100%');
     return new Builder(element);
 }
