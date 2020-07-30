@@ -15,8 +15,10 @@ class Builder {
         render(TextComponent(text), this.element);
     }
 
-    public input(text: string, buttonText: string): void {
-        render(InputComponent(text, buttonText), this.element);
+    public input(text: string, buttonText: string): Promise<string> {
+        return new Promise((resolve) => {
+            render(InputComponent(resolve, text, buttonText), this.element);
+        });
     }
 }
 

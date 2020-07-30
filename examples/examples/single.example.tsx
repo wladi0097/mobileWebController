@@ -19,7 +19,7 @@ export class SingleExample extends Component<IProps, IState> {
         this.fillIframeWithCode();
     }
 
-    public onInput(ev): void {
+    public onInput(ev: { target: { value: string; }; }): void {
         this.setState({ code: ev.target.value });
     }
 
@@ -35,7 +35,7 @@ export class SingleExample extends Component<IProps, IState> {
                         {props.description}
                     </div>
                     <div>
-                    <textarea value={this.state.code} onInput={this.onInput}>
+                    <textarea value={this.state.code} onInput={this.onInput.bind(this)}>
 
                     </textarea>
                         <button onClick={this.fillIframeWithCode.bind(this)}>redraw</button>
@@ -53,7 +53,6 @@ export class SingleExample extends Component<IProps, IState> {
         <div id="main"></div>
         <script src="mobileWebController.js"></script>
         <script>
-            window.wmc = mobileWebController.init(document.getElementById('main'))
             ${this.state.code}
         </script>
         `;
