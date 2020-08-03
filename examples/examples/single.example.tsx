@@ -14,32 +14,45 @@ interface IState {
 export class SingleExample extends Component<IProps, IState> {
     public props: RenderableProps<IProps>;
     public state: Readonly<IState> = {code: this.props.code};
+    private editor;
 
     public componentDidMount(): void {
+        const base = this.base as ParentNode;
+
         this.fillIframeWithCode();
+
+        if (window.CodeMirror) {
+            this.editor = window.CodeMirror(base.querySelector('.editor'), {
+                lineNumbers: true,
+                mode: 'javascript',
+                showCursorWhenSelecting: true,
+                value: String(this.props.code),
+            });
+
+            this.editor.on('change', () => {
+                this.setState({code: this.editor.getValue()});
+            });
+        }
     }
 
     public onInput(ev: { target: { value: string; }; }): void {
-        this.setState({ code: ev.target.value });
+        this.setState({code: ev.target.value});
     }
 
     public render(props?: RenderableProps<IProps>): ComponentChild {
         return <div class={styles.single}>
-            <h1>{props.title}</h1>
-            <div>
-                <div class={styles.content}>
-                    <iframe width='400' height='720'>filled later</iframe>
+            <div class={styles.phone}>
+                <iframe width='400' height='720'>filled later</iframe>
+            </div>
+            <div class={styles.describer}>
+                <h1>{props.title}</h1>
+                <div>
+                    {props.description}
                 </div>
-                <div class={styles.content}>
-                    <div>
-                        {props.description}
-                    </div>
-                    <div>
-                    <textarea value={this.state.code} onInput={this.onInput.bind(this)}>
-
-                    </textarea>
-                        <button onClick={this.fillIframeWithCode.bind(this)}>redraw</button>
-                    </div>
+                <div>
+                    <p>Try it out:</p>
+                    <div class='editor'></div>
+                    <button onClick={this.fillIframeWithCode.bind(this)}>redraw</button>
                 </div>
             </div>
         </div>;
