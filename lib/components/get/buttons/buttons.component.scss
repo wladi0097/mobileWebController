@@ -4,3 +4,12 @@
   word-break: break-word;
   height: auto !important;
 }
+
+.imageComponent {
+  padding: 10% 0;
+
+  img {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+}

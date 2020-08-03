@@ -1,6 +1,6 @@
 import {render} from 'preact';
 import {Components} from '../components';
-import {ButtonTextComponent} from './buttonText/buttonText.component';
+import {ButtonsComponent} from './buttons/buttons.component';
 import {InputComponent} from './input/input.component';
 
 export class GetComponents extends Components {
@@ -10,9 +10,15 @@ export class GetComponents extends Components {
         });
     }
 
-    public buttonsText(text: string, buttons: string[]): Promise<number> {
+    public buttons(text: string, buttons: string[]): Promise<number> {
         return new Promise((resolve) => {
-            render(ButtonTextComponent(resolve, text, buttons), this.element);
+            render(ButtonsComponent(resolve, text, buttons, false), this.element);
+        });
+    }
+
+    public imageButtons(url: string, buttons: string[]): Promise<number> {
+        return new Promise((resolve) => {
+            render(ButtonsComponent(resolve, url, buttons, true), this.element);
         });
     }
 }
