@@ -9,11 +9,7 @@ interface IProps {
     resolver: (input: number) => void;
 }
 
-interface IState {
-    inputText: string;
-}
-
-class ButtonsComponent$ extends Component<IProps, IState> {
+class ButtonsComponent$ extends Component<IProps> {
     public done(index: number): void {
         this.props.resolver(index);
     }
