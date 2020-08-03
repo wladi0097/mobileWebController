@@ -14,14 +14,16 @@ interface IState {
 export class SingleExample extends Component<IProps, IState> {
     public props: RenderableProps<IProps>;
     public state: Readonly<IState> = {code: this.props.code};
-    private editor;
+    private editor: { on: (arg0: string, arg1: () => void) => void; getValue: () => string; };
 
     public componentDidMount(): void {
         const base = this.base as ParentNode;
 
         this.fillIframeWithCode();
 
+        // @ts-ignore
         if (window.CodeMirror) {
+            // @ts-ignore
             this.editor = window.CodeMirror(base.querySelector('.editor'), {
                 lineNumbers: true,
                 mode: 'javascript',
@@ -51,7 +53,7 @@ export class SingleExample extends Component<IProps, IState> {
                 </div>
                 <div>
                     <p>Try it out:</p>
-                    <div class='editor'></div>
+                    <div class='editor' />
                     <button onClick={this.fillIframeWithCode.bind(this)}>redraw</button>
                 </div>
             </div>
