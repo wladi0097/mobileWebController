@@ -1,0 +1,8 @@
+@import 'lib/styles/vars';
+
+.canvas {
+  border: 2px solid $second-color;
+  margin-bottom: 20px;
+  width: 100%;
+  height: 40vh;
+}

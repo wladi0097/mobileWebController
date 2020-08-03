@@ -46,9 +46,15 @@ const getExamples = [
     },
     {
         code: `const buttons = ["ohh maaan", "soo sad"]; const result = await mwc.get.imageButtons("${exampleImage}", buttons)`,
-        description: 'button list',
+        description: 'image buttons list',
         displayAs: 'mwc.display.text(result)',
         title: 'Image buttons',
+    },
+    {
+        code: `const result = await mwc.get.drawing("aaaaa")`,
+        description: 'drawing',
+        displayAs: 'mwc.display.image(result)',
+        title: 'Drawing',
     }
 ].map((getExample) => {
     const code = '(async function(){\n' +
