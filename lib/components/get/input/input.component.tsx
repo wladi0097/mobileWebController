@@ -30,7 +30,7 @@ class InputComponent$ extends Component<IProps> {
 
     public validate(): boolean {
         const input = this.state.inputText;
-        return input.length >= 1;
+        return input.length >= 1 && input.length <= 80;
     }
 
     public render(props?: RenderableProps<IProps>): ComponentChild {
