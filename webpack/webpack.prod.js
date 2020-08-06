@@ -46,6 +46,6 @@ module.exports = merge(common, {
             cleanOnceBeforeBuildPatterns: path.resolve(__dirname, prod_Path),
             root: process.cwd()
         }),
-        new BundleAnalyzerPlugin()
+        // new BundleAnalyzerPlugin()
     ]
 });
