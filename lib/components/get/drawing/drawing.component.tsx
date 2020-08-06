@@ -4,16 +4,31 @@ import style from './drawing.component.scss';
 
 interface IProps {
     text?: string;
+    buttonText?: string;
     resolver: (input: string) => void;
 }
 
-class DrawingComponent$ extends Component<IProps> {
+interface IState {
+    valid: boolean;
+    touched: boolean;
+}
+
+class DrawingComponent$ extends Component<IProps, IState> {
     private canvas: HTMLCanvasElement;
     private ctx: CanvasRenderingContext2D;
     private pos: { x: number, y: number } = {x: 0, y: 0};
+    public state: Readonly<IState> = {valid: true, touched: false};
 
     public done(): void {
-        this.props.resolver(this.canvas.toDataURL());
+        if (this.validate()) {
+            this.props.resolver(this.canvas.toDataURL());
+        } else {
+            this.setState({valid: false, touched: false});
+        }
+    }
+
+    public validate(): boolean {
+        return this.state.touched;
     }
 
     public componentDidMount(): void {
@@ -39,16 +54,20 @@ class DrawingComponent$ extends Component<IProps> {
         return <div>
             <h1 style={TextHelper.fontSize(props.text, 0.7)}>{props.text}</h1>
             <div>
-                <canvas class={style.canvas}>
+                <canvas className={`${style.canvas} ${this.state.valid ? '' :  style.invalid}`}>
                 </canvas>
             </div>
-            <button onClick={() => this.done()}>aaaaaaaa</button>
+            <button onClick={() => this.done()}>{this.props.buttonText}</button>
         </div>;
     }
 
     private cDraw(event: MouseEvent): void {
         if (event.buttons !== 1) {
             return;
+        }
+
+        if (!this.state.touched) {
+            this.setState({valid: true, touched: true});
         }
 
         this.ctx.beginPath();
@@ -65,5 +84,5 @@ class DrawingComponent$ extends Component<IProps> {
 }
 
 export const DrawingComponent =
-    (resolver: (input: string) => void, text: string): VNode =>
-        <DrawingComponent$ resolver={resolver} text={text}/>;
+    (resolver: (input: string) => void, text: string, buttonText: string): VNode =>
+        <DrawingComponent$ resolver={resolver} text={text} buttonText={buttonText}/>;

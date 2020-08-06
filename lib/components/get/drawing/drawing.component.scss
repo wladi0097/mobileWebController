@@ -5,4 +5,8 @@
   margin-bottom: 20px;
   width: 100%;
   height: 40vh;
+
+  &.invalid {
+    border: 3px solid $error;
+  }
 }

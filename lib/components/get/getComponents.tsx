@@ -23,9 +23,9 @@ export class GetComponents extends Components {
         });
     }
 
-    public drawing(text: string): Promise<string> {
+    public drawing(text: string, buttonText: string): Promise<string> {
         return new Promise((resolve) => {
-            render(DrawingComponent(resolve, text), this.element);
+            render(DrawingComponent(resolve, text, buttonText), this.element);
         });
     }
 }
