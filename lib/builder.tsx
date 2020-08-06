@@ -21,7 +21,7 @@ class Builder {
     }
 }
 
-export function init(element: HTMLElement) {
+export function init(element: HTMLElement): Builder {
     element.classList.add(styles.mobileWebControllerMain);
     return new Builder(element);
 }
