@@ -6,18 +6,20 @@ interface IProps {
     text?: string;
     buttonText?: string;
     resolver: (input: string) => void;
+    colors: string[];
 }
 
 interface IState {
     valid: boolean;
     touched: boolean;
+    selectedColor: string;
 }
 
 class DrawingComponent$ extends Component<IProps, IState> {
     private canvas: HTMLCanvasElement;
     private ctx: CanvasRenderingContext2D;
     private pos: { x: number, y: number } = {x: 0, y: 0};
-    public state: Readonly<IState> = {valid: true, touched: false};
+    public state: Readonly<IState> = {valid: true, touched: false, selectedColor: '#000'};
 
     public done(): void {
         if (this.validate()) {
@@ -31,11 +33,17 @@ class DrawingComponent$ extends Component<IProps, IState> {
         return this.state.touched;
     }
 
+    public updateUseColor(color: string): void {
+        this.setState({selectedColor: color});
+        this.ctx.strokeStyle = color;
+    }
+
     public componentDidMount(): void {
         const base = this.base as ParentNode;
         this.canvas = base.querySelector('canvas');
         this.ctx = this.canvas.getContext('2d');
         this.setUpCanvas();
+        this.updateUseColor(this.props.colors[0]);
 
         this.canvas.addEventListener('mousemove', this.cDraw.bind(this));
         this.canvas.addEventListener('mousedown', this.cSetPosition.bind(this));
@@ -47,13 +55,23 @@ class DrawingComponent$ extends Component<IProps, IState> {
         this.ctx.lineWidth = 5;
         this.ctx.lineCap = 'round';
         this.ctx.lineJoin = 'round';
-        this.ctx.strokeStyle = '#c0392b';
     }
 
     public render(props?: RenderableProps<IProps>): ComponentChild {
         return <div>
             <h1 style={TextHelper.fontSize(props.text, 0.7)}>{props.text}</h1>
             <div>
+                <div class={style.colors}>
+                    {
+                        props.colors.map((color: string) => {
+                            return<div
+                                class={color === this.state.selectedColor ? style.selectedColor : ''}
+                                style={`background-color: ${color}`}
+                                onClick={() => this.updateUseColor(color)}
+                            />;
+                        })
+                    }
+                </div>
                 <canvas className={`${style.canvas} ${this.state.valid ? '' :  style.invalid}`}>
                 </canvas>
             </div>
@@ -84,5 +102,5 @@ class DrawingComponent$ extends Component<IProps, IState> {
 }
 
 export const DrawingComponent =
-    (resolver: (input: string) => void, text: string, buttonText: string): VNode =>
-        <DrawingComponent$ resolver={resolver} text={text} buttonText={buttonText}/>;
+    (resolver: (input: string) => void, text: string, buttonText: string, colors: string[] = ['#000']): VNode =>
+        <DrawingComponent$ resolver={resolver} text={text} buttonText={buttonText} colors={colors}/>;

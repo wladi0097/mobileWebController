@@ -51,7 +51,7 @@ const getExamples = [
         title: 'Image buttons',
     },
     {
-        code: `const result = await mwc.get.drawing("aaaaa")`,
+        code: `const result = await mwc.get.drawing("draw me like your french girls", "submit", ["#000", "#a90000"])`,
         description: 'drawing',
         displayAs: 'mwc.display.image(result)',
         title: 'Drawing',
