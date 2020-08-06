@@ -1,0 +1,5 @@
+@import 'lib/styles/vars';
+
+.invalid {
+  border: 3px solid $error;
+}
