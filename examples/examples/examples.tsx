@@ -13,6 +13,11 @@ const displayExamples = [
         code: `mwc.display.image("${exampleImage}")`,
         description: 'show a simple image',
         title: 'Image',
+    },
+    {
+        code: `mwc.display.textImageText("top", "${exampleImage}", "bottom")`,
+        description: 'text - image - text',
+        title: 'text - image - text',
     }
 ].map((displayExample) => {
     const code = `mwc = mobileWebController.init(document.getElementById('main'));\n` + displayExample.code;
