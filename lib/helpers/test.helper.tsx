@@ -7,10 +7,12 @@ declare global {
         // @ts-ignore
         interface Matchers<R> {
             toHaveText(expected: string): CustomMatcherResult
+
             toHaveAttribute(attribute: string, value: string): CustomMatcherResult
         }
     }
 }
+
 /* tslint:enable */
 
 export class TestHelper {
@@ -19,6 +21,7 @@ export class TestHelper {
     /* tslint:disable */
     // @ts-ignore
     private _mwc;
+
     /* tslint:enable */
 
     constructor() {
@@ -41,6 +44,25 @@ export class TestHelper {
         if (!element) {
             throw new Error(`element with the query ${query} could not be found`);
         }
+        element.dispatchEvent(event);
+    }
+
+    public waitForStateUpdate(callback: () => void): void {
+        // To be honest, I gave up trying to get the real callback mock.
+        setTimeout(() => {
+            callback();
+        }, 10);
+    }
+
+    public input(query: string, input: string): void {
+        const element = document.getElementById(this.testElementName).querySelector(query) as HTMLInputElement;
+
+        if (!element) {
+            throw new Error(`element with the query ${query} could not be found`);
+        }
+
+        const event = new KeyboardEvent('input');
+        element.value = input;
         element.dispatchEvent(event);
     }
 
