@@ -1,7 +1,5 @@
 import {h} from 'preact';
 import {init} from '../builder';
-import {DisplayComponents} from '../components/display/displayComponents';
-import {GetComponents} from '../components/get/getComponents';
 
 /* tslint:disable */
 declare global {
@@ -17,8 +15,11 @@ declare global {
 
 export class TestHelper {
     private readonly testElementName: string = 'testElement';
+
+    /* tslint:disable */
     // @ts-ignore
-    private mwc;
+    private _mwc;
+    /* tslint:enable */
 
     constructor() {
         this.injectHtml();
@@ -28,12 +29,19 @@ export class TestHelper {
         window.h = h;
     }
 
-    public get display(): DisplayComponents {
-        return this.mwc.displayComponents;
+    // tslint:disable-next-line:no-any
+    public get mwc(): any {
+        return this._mwc;
     }
 
-    public get get(): GetComponents {
-        return this.mwc.getComponents;
+    public click(query: string): void {
+        const event = new MouseEvent('click');
+        const element = document.getElementById(this.testElementName).querySelector(query);
+
+        if (!element) {
+            throw new Error(`element with the query ${query} could not be found`);
+        }
+        element.dispatchEvent(event);
     }
 
     public rendered(): HTMLElement {
@@ -72,6 +80,6 @@ export class TestHelper {
         const newElement = document.createElement('div');
         newElement.id = this.testElementName;
         document.body.append(newElement);
-        this.mwc = init(newElement);
+        this._mwc = init(newElement);
     }
 }
