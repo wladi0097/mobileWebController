@@ -9,6 +9,7 @@ declare global {
         // @ts-ignore
         interface Matchers<R> {
             toHaveText(expected: string): CustomMatcherResult
+            toHaveAttribute(attribute: string, value: string): CustomMatcherResult
         }
     }
 }
@@ -44,6 +45,15 @@ export class TestHelper {
             toHaveText(received: HTMLElement, expected: string): jest.CustomMatcherResult {
                 const pass = received.textContent.includes(expected);
                 const message = () => `The element does not contain the expected text ${expected}`;
+
+                return {
+                    message,
+                    pass
+                };
+            },
+            toHaveAttribute(received: HTMLElement, attribute: string, value: string): jest.CustomMatcherResult {
+                const pass = received.hasAttribute(attribute) ? received.getAttribute(attribute) === value : false;
+                const message = () => `The element does not have the attribute ${attribute} with the value ${value}`;
 
                 return {
                     message,

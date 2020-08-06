@@ -8,7 +8,7 @@ export class DisplayComponents extends Components {
         render(TextComponent(text), this.element);
     }
 
-    public image(src: string, alt: string): void {
+    public image(src: string, alt?: string): void {
         render(ImageComponent(src, alt), this.element);
     }
 }
